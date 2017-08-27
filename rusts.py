@@ -14,4 +14,4 @@ def playerList(server):
             print(p["name"]) + " (" + str(int((p["duration"]))) + "s)"
 
 if __name__ == "__main__":
-    playerList((unicode(SERVER, PORT)))
+    playerList((unicode(SERVER), PORT))
