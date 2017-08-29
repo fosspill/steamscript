@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 import valve.source.a2s
@@ -44,11 +44,11 @@ def playerList(server):
             player_name = player["name"]
             player_minutes = int(player["duration"]) / 60
             player_hours, player_minutes = divmod(player_minutes, 60)
-            print "%12s:\t %d hr %02d min" % (player_name, player_hours, player_minutes)
+            print ("%12s:\t %d hr %02d min" % (player_name, player_hours, player_minutes))
 
     print(line_sep)
-    print "%d players \\ %d max" % (num_players, max_players)
+    print ("%d players \\ %d max" % (num_players, max_players))
     print(line_sep)
 
 if __name__ == "__main__":
-    playerList((unicode(SERVER), PORT))
+    playerList((SERVER, PORT))
