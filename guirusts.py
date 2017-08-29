@@ -41,7 +41,7 @@ def config_load():
         configread = f.read()
         config = ConfigParser.RawConfigParser(allow_no_value=True)
         config.readfp(io.BytesIO(configread))
-        print(config.get('blacklist', 'names').split(':'))
+        #print(config.get('blacklist', 'names').split(':'))
         # print(config.get('blacklist'))
         return config
 
@@ -49,12 +49,10 @@ def config_load():
 def playerList():
     config = config_load()
     server = valve.source.a2s.ServerQuerier((unicode(config.get('app', 'server')), config.getint('app', 'port')))
-    info = server.info()
     players = server.players()
 
     for p in players['players']:
         if p["name"]:
-            # print(p["name"]) + " (" + str(int((p["duration"]))) + "s)"
             players_list.append(p["name"])
 
 
@@ -78,10 +76,12 @@ class TaskBarIcon(wx.TaskBarIcon):
 
     def CreatePopupMenu(self):
         menu = wx.Menu()
-        create_menu_item(menu, 'Performance Mode: {}', None, 100)
+        create_menu_item(menu, 'Server name (1/10)', None, 100)
         menu.Enable(100, False)
         menu.AppendSeparator()
-        create_menu_item(menu, 'Toggle', self.on_toggle)
+        create_menu_item(menu, 'List', self.on_toggle)
+        menu.AppendSeparator()
+        create_menu_item(menu, 'Conf', self.on_toggle)
         menu.AppendSeparator()
         create_menu_item(menu, 'Exit', self.on_exit)
         return menu
@@ -96,9 +96,11 @@ class TaskBarIcon(wx.TaskBarIcon):
         notification.show()
 
     def on_left_click(self, path):
+        global players_list
+        players_list = []
         playerList()
         print(players_list)
-        dlg = wx.MessageDialog(None, str(players_list), 'Players list', wx.OK | wx.ICON_NONE)
+        dlg = wx.MessageDialog(None, '\n'.join(players_list), 'Players list', wx.OK | wx.ICON_NONE | wx.STAY_ON_TOP)
         result = dlg.ShowModal()
 
     def on_toggle(self, event):
