@@ -3,8 +3,8 @@
 
 import valve.source.a2s
 
-SERVER="163.172.17.175"
-PORT=30616
+SERVER = "163.172.17.175"
+PORT = 30616
 
 def playerList(server):
     """Retreive player and limited server/game information and print the results
