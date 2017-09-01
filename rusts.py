@@ -6,7 +6,7 @@ import valve.source.a2s
 SERVER = "163.172.17.175"
 PORT = 30616
 
-def playerList(server):
+def player_list(server):
     """Retreive player and limited server/game information and print the results
 
        Specifically, this retrieves information re: a Rust server.
@@ -50,4 +50,4 @@ def playerList(server):
     print(line_sep)
 
 if __name__ == "__main__":
-    playerList((SERVER, PORT))
+    player_list((SERVER, PORT))
