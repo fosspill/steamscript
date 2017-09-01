@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+"""Rusts.py Display information related to online players
+and server version for the GamingOnLinux server.
+Should be compatible with any source server/game"""
 
 import valve.source.a2s
 
