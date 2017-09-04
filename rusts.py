@@ -5,9 +5,12 @@ and server version for the GamingOnLinux server.
 Should be compatible with any source server/game"""
 
 import valve.source.a2s
+import time
 
 SERVER = "163.172.17.175"
+#SERVER = "147.135.203.252"
 PORT = 30616
+#PORT = 28015
 
 
 def player_list(server):
@@ -27,13 +30,17 @@ def player_list(server):
       ----------------------------
        4 players / 50 max
       ----------------------------"""
-
-    server = valve.source.a2s.ServerQuerier(server)
-    players = server.players()
-    num_players, max_players, server_name, version = server.info()["player_count"], \
-                                                     server.info()["max_players"], \
-                                                     server.info()["server_name"], \
-                                                     server.info()["version"]
+    try:
+        server = valve.source.a2s.ServerQuerier(server)
+        players = server.players()
+        num_players, max_players, server_name, version = server.info()["player_count"], \
+                                                         server.info()["max_players"], \
+                                                         server.info()["server_name"], \
+                                                         server.info()["version"]
+    except Exception as e:
+        print(e)
+        time.sleep(10)
+        return
 
     line_sep = "-" * 28
 
@@ -55,4 +62,6 @@ def player_list(server):
 
 
 if __name__ == "__main__":
-    player_list((SERVER, PORT))
+    while True:
+        player_list((SERVER, PORT))
+
