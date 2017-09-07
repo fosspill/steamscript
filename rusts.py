@@ -18,7 +18,7 @@ def player_list(server):
        ----------------------------
        Rust - ServerName.com
        ----------------------------
-       Rust Version 1234
+       Rust Version 1234 (60ms)
        ----------------------------
        Player1:       2 hr 40 min
        Player2:	      2 hr 52 min
@@ -34,13 +34,14 @@ def player_list(server):
                                                      server.info()["max_players"], \
                                                      server.info()["server_name"], \
                                                      server.info()["version"]
+    ping = round(server.ping())
 
     line_sep = "-" * 28
 
     print(line_sep)
     print(server_name)
     print(line_sep)
-    print("Rust Version " + version)
+    print("Rust Version {} ({}ms)".format(version, ping))
     print(line_sep)
 
     for player in sorted(players["players"], key=lambda player: player["name"]):
