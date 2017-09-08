@@ -38,6 +38,7 @@ def player_list(server):
                                                          server.info()["max_players"], \
                                                          server.info()["server_name"], \
                                                          server.info()["version"]
+        ping = round(server.ping())
     except Exception as e:
         print(e)
         return
