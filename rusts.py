@@ -21,7 +21,7 @@ def player_list(server):
        ----------------------------
        Rust - ServerName.com
        ----------------------------
-       Rust Version 1234
+       Rust Version 1234 (60ms)
        ----------------------------
        Player1:       2 hr 40 min
        Player2:	      2 hr 52 min
@@ -30,6 +30,7 @@ def player_list(server):
       ----------------------------
        4 players / 50 max
       ----------------------------"""
+
     try:
         server = valve.source.a2s.ServerQuerier(server)
         players = server.players()
@@ -39,7 +40,6 @@ def player_list(server):
                                                          server.info()["version"]
     except Exception as e:
         print(e)
-        time.sleep(10)
         return
 
     line_sep = "-" * 28
@@ -47,14 +47,14 @@ def player_list(server):
     print(line_sep)
     print(server_name)
     print(line_sep)
-    print("Rust Version " + version)
+    print("Rust Version {} ({}ms)".format(version, ping))
     print(line_sep)
 
     for player in sorted(players["players"], key=lambda player: player["name"]):
         player_name = player["name"]
         player_minutes = int(player["duration"]) / 60
         player_hours, player_minutes = divmod(player_minutes, 60)
-        print("%12s:\t %d hr %02d min" % (player_name, player_hours, player_minutes))
+        print("%12s:\t %d hr %02d min" % (player_name[:12], player_hours, player_minutes))
 
     print(line_sep)
     print("%d players / %d max" % (num_players, max_players))
