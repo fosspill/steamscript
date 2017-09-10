@@ -48,14 +48,19 @@ def player_list(last_players):
        4 players / 50 max
       ----------------------------"""
 
-    current_players = {}
-    server = valve.source.a2s.ServerQuerier((SERVER, PORT))
-    players = sorted(server.players()['players'], key=lambda player: player["name"])
-    num_players, max_players, server_name, version = server.info()["player_count"], \
-                                                     server.info()["max_players"], \
-                                                     server.info()["server_name"], \
-                                                     server.info()["version"]
-    ping = round(server.ping())
+    try:
+        current_players = {}
+        server = valve.source.a2s.ServerQuerier((SERVER, PORT))
+        players = sorted(server.players()['players'], key=lambda player: player["name"])
+        num_players, max_players, server_name, version = server.info()["player_count"], \
+                                                         server.info()["max_players"], \
+                                                         server.info()["server_name"], \
+                                                         server.info()["version"]
+        ping = round(server.ping())
+
+    except Exception as e:
+        print(e)
+        return
 
     line_sep = "-" * 28
 
