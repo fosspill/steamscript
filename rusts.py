@@ -8,9 +8,7 @@ import valve.source.a2s
 import time
 
 SERVER = "163.172.17.175"
-#SERVER = "147.135.203.252"
 PORT = 30616
-#PORT = 28015
 
 
 def player_list(server):
@@ -63,6 +61,5 @@ def player_list(server):
 
 
 if __name__ == "__main__":
-    while True:
-        player_list((SERVER, PORT))
+    player_list((SERVER, PORT))
 
