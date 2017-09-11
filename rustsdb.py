@@ -6,7 +6,6 @@
 
 import valve.source.a2s
 import psycopg2
-import psycopg2.extras
 import os
 import datetime
 
@@ -43,9 +42,10 @@ def store_to_db():
                 record = cur.fetchone()
                 if record is None:
                     login = datetime.datetime.now() - datetime.timedelta(seconds=player['duration'])
-                    query = ("INSERT INTO players (name, login, last_seen, duration) VALUES (%s, %s, %s, %s)")
+                    query = ("INSERT INTO players (name, login, last_seen, duration) VALUES (%s, %s, %s, %s) RETURNING id")
                     cur.execute(query, (player['name'], login, datetime.datetime.now(), player['duration']))
                     conn.commit()
+                    players_loggedin += (cur.fetchone()[0],)
                 else:
                     cur.execute("UPDATE players SET last_seen = now() WHERE id = %s", (record[0],))
                     conn.commit()
