@@ -48,13 +48,16 @@ def player_list(server):
     print(line_sep)
     print("Rust Version {} ({}ms)".format(version, ping))
     print(line_sep)
-    longestplayername = len(max(players["players"], key=lambda player: len(player["name"])))    
-    for player in sorted(players["players"], key=lambda player: player["name"]):
-        player_name = player["name"]
-        player_minutes = int(player["duration"]) / 60
-        player_hours, player_minutes = divmod(player_minutes, 60)
-        printstr = " " * (longestplayername-len(player_name)) + player_name + ":\t"+"%d hr %02d min" % (player_hours, player_minutes)
-        print (printstr)
+    if len(players["players"]) > 0:
+        longestplayername = len(max(players["players"], key=lambda player: len(player["name"])))    
+        for player in sorted(players["players"], key=lambda player: player["name"]):
+            player_name = player["name"]
+            player_minutes = int(player["duration"]) / 60
+            player_hours, player_minutes = divmod(player_minutes, 60)
+            printstr = " " * (longestplayername-len(player_name)) + player_name + ":\t"+"%d hr %02d min" % (player_hours, player_minutes)
+            print (printstr)
+    else:
+        print ("Nobody Rusting away here :(")
 
     print(line_sep)
     print("%d players / %d max" % (num_players, max_players))
