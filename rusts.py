@@ -49,7 +49,7 @@ def player_list(server):
     print("Rust Version {} ({}ms)".format(version, ping))
     print(line_sep)
     if len(players["players"]) > 0:
-        longestplayername = len(max(players["players"], key=lambda player: len(player["name"])))    
+        longestplayername = len(max(players["players"], key=lambda player: len(player["name"]))["name"])
         for player in sorted(players["players"], key=lambda player: player["name"]):
             player_name = player["name"]
             player_minutes = int(player["duration"]) / 60
