@@ -41,7 +41,7 @@ def player_list(server):
         print(e)
         return
 
-    line_sep = "-" * 28
+    line_sep =  "-" * 28 
 
     print(line_sep)
     print(server_name)
@@ -54,7 +54,7 @@ def player_list(server):
             player_name = player["name"]
             player_minutes = int(player["duration"]) / 60
             player_hours, player_minutes = divmod(player_minutes, 60)
-            printstr = " " * (longestplayername-len(player_name)) + player_name + ":\t"+"%d hr %02d min" % (player_hours, player_minutes)
+            printstr = "<br>" + " " * (longestplayername-len(player_name)) + player_name + ":\t"+"%d hr %02d min" % (player_hours, player_minutes)
             print (printstr)
     else:
         print ("Nobody Rusting away here :(")
@@ -65,5 +65,11 @@ def player_list(server):
 
 
 if __name__ == "__main__":
+    print("<head>")
+    print("<meta http-equiv=\"refresh\" content=\"10\">")
+    print("</head>")
+    print("<body>")
+    print("<pre>")
     player_list((SERVER, PORT))
-
+    print("</pre>")
+    print("</body>")
