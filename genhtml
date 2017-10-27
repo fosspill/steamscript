@@ -1,0 +1,1 @@
+watch -n 30 "python3 ~/steamscript/rusts.py >  ~/www/rust.html"
