@@ -9,7 +9,6 @@ PORT = 30616
 SLEEP = 60 # seconds between server queries
 
 import time
-import os
 import valve.source.a2s
 from datetime import datetime
 try:
@@ -96,7 +95,7 @@ if __name__ == "__main__":
     try:
         last_players = None
         while True:
-            os.system('clear')
+            print("\033[2J\033[;H") # ANSI Clear screen, and reset cursor
             last_players = player_list(last_players)
             time.sleep(SLEEP)
     except KeyboardInterrupt:
