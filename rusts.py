@@ -7,8 +7,8 @@ Should be compatible with any source server/game"""
 import valve.source.a2s
 import time
 
-SERVER = "163.172.17.175"
-PORT = 30616
+SERVER = "89.34.99.19"
+PORT = 28015
 
 
 def player_list(server):
