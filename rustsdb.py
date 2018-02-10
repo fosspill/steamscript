@@ -9,8 +9,8 @@ import psycopg2
 import os
 import datetime
 
-SERVER = "163.172.17.175"
-PORT = 30616
+SERVER = "89.34.99.19"
+PORT = 28015
 
 # assumes players table has been already created:
 #   create table players (id serial, name varchar, login timestamp,
